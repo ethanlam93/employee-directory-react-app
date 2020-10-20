@@ -28,13 +28,47 @@ class App extends React.Component {
     this.setState({
       search: target.value
     })
+  };
+  
+  handleSortByName = (event) => {
+    event.preventDefault()
+    const employees = this.state.employees;
+    const sortedEmployeesByFirstName = employees.sort((a, b) => {
+      const nameA=a.name.first.toLowerCase(), nameB=b.name.first.toLowerCase()
+          if (nameA < nameB) //sort string ascending
+              return -1 
+          if (nameA > nameB)
+              return 1
+          return 0 //default return value (no sorting)
+      })
+
+    this.setState({
+      employees: sortedEmployeesByFirstName
+    })
+  }
+
+  handleSortByEmail = (event) => {
+    event.preventDefault()
+    const employees = this.state.employees;
+    const sortedEmployeesByFirstName = employees.sort((a, b) => {
+      const emailA=a.email.toLowerCase(), emailB=b.email.toLowerCase()
+          if (emailA < emailB) //sort string ascending
+              return -1 
+          if (emailA > emailB)
+              return 1
+          return 0 //default return value (no sorting)
+      })
+
+    this.setState({
+      employees: sortedEmployeesByFirstName
+    })
   }
   render() {
     const { employees, search } = this.state;
     const filteredEmployees = employees.filter(employee =>
       employee.name.first.toLowerCase().includes(search.toLowerCase())
       || employee.name.last.toLowerCase().includes(search.toLowerCase())
-      || employee.phone.includes(search.toLowerCase())
+      || employee.phone.replace(/ /g, "").includes(search.toLowerCase())
       || employee.email.toLowerCase().includes(search.toLowerCase())
       || moment(employee.dob.date).format("MM-DD-YYYY").includes(search.toLowerCase())
 
@@ -44,7 +78,7 @@ class App extends React.Component {
       <>
         <Heading />
         <Searchbox handleSearch={this.handleSearch} />
-        <EmployeeTable employees={filteredEmployees} />
+        <EmployeeTable employees={filteredEmployees} handleSortByName={this.handleSortByName} handleSortByEmail={this.handleSortByEmail} />
       </>
     )
   };

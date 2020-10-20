@@ -1,11 +1,11 @@
 import React from "react";
 
-function TableHeading(){
+function TableHeading({handleSortByName, handleSortByEmail}){
     return <>
     <th>Image</th>
-    <th>Name</th>
+    <th><a href="#" onClick={handleSortByName}>Name</a></th>
     <th>Phone Number</th>
-    <th>Email</th>
+    <th><a href="#" onClick={handleSortByEmail}>Email</a></th>
     <th>DOB</th>
     </>
 }
