@@ -2,7 +2,7 @@ import React from "react";
 import TableHeading from "./heading";
 import EmployeeRow from "./employees";
 
-function EmployeeTable({employees, handleSortByName, handleSortByEmail}) {
+function EmployeeTable({employees, handleSortByName, handleSortByEmail, handleSortByDOB}) {
     console.log(employees)
     return <>
         <div className="container text-center mt-4 ">
@@ -11,7 +11,7 @@ function EmployeeTable({employees, handleSortByName, handleSortByEmail}) {
                     <table className="table">
                         <thead>
                             <tr>
-                                <TableHeading handleSortByName={handleSortByName} handleSortByEmail={handleSortByEmail}/>
+                                <TableHeading handleSortByDOB={handleSortByDOB} handleSortByName={handleSortByName} handleSortByEmail={handleSortByEmail}/>
                             </tr>
                         </thead>
                         <tbody>

@@ -50,7 +50,7 @@ class App extends React.Component {
   handleSortByEmail = (event) => {
     event.preventDefault()
     const employees = this.state.employees;
-    const sortedEmployeesByFirstName = employees.sort((a, b) => {
+    const sortedEmployeesByEmail = employees.sort((a, b) => {
       const emailA=a.email.toLowerCase(), emailB=b.email.toLowerCase()
           if (emailA < emailB) //sort string ascending
               return -1 
@@ -60,9 +60,23 @@ class App extends React.Component {
       })
 
     this.setState({
-      employees: sortedEmployeesByFirstName
+      employees: sortedEmployeesByEmail
     })
   }
+
+  handleSortByDOB = (event) => {
+    event.preventDefault()
+    const employees = this.state.employees;
+    const sortedEmployeesByDOB = employees.sort((a, b) => {
+      return (a.dob.date < b.dob.date) ? -1 : ((a.dob.date > b.dob.date) ? 1 : 0);
+    });
+    this.setState({
+      employees: sortedEmployeesByDOB
+    })
+  }
+
+
+
   render() {
     const { employees, search } = this.state;
     const filteredEmployees = employees.filter(employee =>
@@ -78,7 +92,7 @@ class App extends React.Component {
       <>
         <Heading />
         <Searchbox handleSearch={this.handleSearch} />
-        <EmployeeTable employees={filteredEmployees} handleSortByName={this.handleSortByName} handleSortByEmail={this.handleSortByEmail} />
+        <EmployeeTable employees={filteredEmployees} handleSortByName={this.handleSortByName} handleSortByEmail={this.handleSortByEmail} handleSortByDOB={this.handleSortByDOB} />
       </>
     )
   };
