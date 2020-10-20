@@ -15,8 +15,8 @@ function EmployeeTable({employees}) {
                             </tr>
                         </thead>
                         <tbody>
-                                {employees.map((employee) => 
-                                    <EmployeeRow employee={employee} />
+                                {employees.map((employee,key) => 
+                                    <EmployeeRow key={key} employee={employee} />
                                 )}
                         </tbody>
                     </table>

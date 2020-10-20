@@ -4,7 +4,7 @@ import moment from "moment"
 function EmployeeRow({employee}) {
     return <>
         <tr>
-            <td><img src={ employee.picture.thumbnail}/></td>
+            <td><img src={ employee.picture.thumbnail} alt={employee.id.value}/></td>
             <td>{employee.name.first} {employee.name.last}</td>
             <td>{employee.phone}</td>
             <td>{employee.email}</td>
